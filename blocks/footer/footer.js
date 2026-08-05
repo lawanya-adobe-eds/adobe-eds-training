@@ -16,5 +16,18 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
+  // tag structural sections so CSS can lay them out (content-first: read from DOM)
+  const sections = footer.querySelectorAll(':scope > div');
+  if (sections[0]) sections[0].classList.add('footer-brand');
+  if (sections[1]) sections[1].classList.add('footer-links');
+
+  // the brand section's two paragraphs are the logo/wordmark and the social row
+  const brand = footer.querySelector('.footer-brand');
+  if (brand) {
+    const paras = brand.querySelectorAll('p');
+    if (paras[0]) paras[0].classList.add('footer-brand-logo');
+    if (paras[1]) paras[1].classList.add('footer-social');
+  }
+
   block.append(footer);
 }
