@@ -1,0 +1,42 @@
+/* Quote block -- pull-quote with left accent bar + attribution. Tokens only. */
+
+.quote .quote-figure {
+  margin: 0;
+  padding: 8px 0 8px 24px;
+  border-left: 4px solid var(--text-color);
+}
+
+.quote .quote-text {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-style: italic;
+  font-size: var(--heading-size-m);
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+.quote .quote-attribution {
+  margin-top: 16px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-style: normal;
+  color: var(--link-color);
+}
+
+.quote .quote-attribution cite {
+  font-style: normal;
+}
+
+.quote .quote-attribution cite::before {
+  content: '— ';
+}
+
+@media (width >= 900px) {
+  .quote .quote-figure {
+    padding-left: 32px;
+  }
+
+  .quote .quote-text {
+    font-size: var(--heading-size-l);
+  }
+}
