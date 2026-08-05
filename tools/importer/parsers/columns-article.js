@@ -5,7 +5,7 @@
  * Source: https://wknd-trendsetters.site/about-us
  * Structure: single row, two columns.
  *   Column 1 = article image
- *   Column 2 = H2 heading + author + date (breadcrumb intentionally excluded)
+ *   Column 2 = breadcrumb (Home / Case studies) + H2 heading + author + date
  */
 export default function parse(element, { document }) {
   const columns = element.querySelectorAll(':scope > div');
@@ -19,9 +19,13 @@ export default function parse(element, { document }) {
     if (img) leftCell.push(img);
   }
 
-  // --- Column 2: heading + author/date meta (skip breadcrumbs) ---
+  // --- Column 2: breadcrumb + heading + author/date meta ---
   const rightCell = [];
   if (contentCol) {
+    // Breadcrumb row (Home / Case studies) leads the content column.
+    const breadcrumb = contentCol.querySelector(':scope > .breadcrumbs');
+    if (breadcrumb) rightCell.push(breadcrumb);
+
     const heading = contentCol.querySelector('h1, h2, [class*="heading"]');
     if (heading) rightCell.push(heading);
 

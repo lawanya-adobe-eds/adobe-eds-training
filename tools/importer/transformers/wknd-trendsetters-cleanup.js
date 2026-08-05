@@ -16,13 +16,6 @@
 const TransformHook = { beforeTransform: 'beforeTransform', afterTransform: 'afterTransform' };
 
 export default function transform(hookName, element, payload) {
-  if (hookName === TransformHook.beforeTransform) {
-    // Remove breadcrumb navigation before block parsing so the columns-article
-    // parser (section featured-article-intro) does not pick up breadcrumb links.
-    // Found in cleaned.html: <div class="breadcrumbs"> within #main-content section 1.
-    WebImporter.DOMUtils.remove(element, ['.breadcrumbs']);
-  }
-
   if (hookName === TransformHook.afterTransform) {
     // Remove non-authorable site chrome. These live outside/around #main-content
     // (navbar and footer contain grid-layout / card-link structures that would

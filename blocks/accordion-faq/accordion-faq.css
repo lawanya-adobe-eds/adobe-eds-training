@@ -13,6 +13,24 @@
   gap: 8px;
 }
 
+/* desktop: heading/intro on the left, accordion on the right (matches source 2-col) */
+@media (width >= 900px) {
+  .accordion-faq-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+    align-items: start;
+  }
+
+  .accordion-faq-container .default-content-wrapper {
+    grid-column: 1;
+  }
+
+  .accordion-faq-container .accordion-faq-wrapper {
+    grid-column: 2;
+  }
+}
+
 /* accordion item */
 .accordion-faq .accordion-faq-item {
   border: 1px solid #e8e8e8;
