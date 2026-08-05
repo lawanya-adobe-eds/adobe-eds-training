@@ -13,5 +13,50 @@ export default function decorate(block) {
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
+
+  ul.querySelectorAll('li').forEach((li) => {
+    const body = li.querySelector('.cards-blog-card-body');
+    if (!body) return;
+
+    // Split the meta paragraph (e.g. "Casual Cool May 12") into a category
+    // pill and a secondary date. The date is the trailing "Month Day" pattern.
+    const metaP = body.querySelector('p');
+    if (metaP) {
+      const text = metaP.textContent.trim();
+      const dateMatch = text.match(/\s+([A-Z][a-z]+\.?\s+\d{1,2})$/);
+      const meta = document.createElement('div');
+      meta.className = 'cards-blog-card-meta';
+      const category = dateMatch ? text.slice(0, dateMatch.index).trim() : text;
+      const date = dateMatch ? dateMatch[1].trim() : '';
+      if (category) {
+        const tag = document.createElement('span');
+        tag.className = 'cards-blog-card-tag';
+        tag.textContent = category;
+        meta.append(tag);
+      }
+      if (date) {
+        const dateEl = document.createElement('span');
+        dateEl.className = 'cards-blog-card-date';
+        dateEl.textContent = date;
+        meta.append(dateEl);
+      }
+      metaP.replaceWith(meta);
+    }
+
+    // Make the whole card clickable using the title link's href.
+    const titleLink = li.querySelector('h3 a');
+    if (titleLink) {
+      const href = titleLink.getAttribute('href');
+      const anchor = document.createElement('a');
+      anchor.className = 'cards-blog-card-link';
+      anchor.href = href;
+      anchor.setAttribute('aria-label', titleLink.textContent.trim());
+      // unwrap the inner link, keeping the heading text
+      titleLink.replaceWith(...titleLink.childNodes);
+      while (li.firstChild) anchor.append(li.firstChild);
+      li.append(anchor);
+    }
+  });
+
   block.replaceChildren(ul);
 }

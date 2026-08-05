@@ -1,58 +1,162 @@
-.tabs-testimonials .tabs-testimonials-list {
+/* Testimonials tabs
+ * Source: wknd-trendsetters.site/about-us  (.tabs-wrapper)
+ * Layout: active panel on top (image beside quote), 4-across tab row below.
+ */
+
+.tabs-testimonials {
   display: flex;
-  gap: 0.5ch;
-  max-width: 100%;
-  font-size: var(--body-font-size-xs);
-  overflow-x: auto;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --- Tab row (rendered below the active panel) --- */
+.tabs-testimonials .tabs-testimonials-list {
+  order: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
 @media (width >= 600px) {
   .tabs-testimonials .tabs-testimonials-list {
-    font-size: var(--body-font-size-s);
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (width >= 900px) {
   .tabs-testimonials .tabs-testimonials-list {
-    font-size: var(--body-font-size-m);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-.tabs-testimonials .tabs-testimonials-list button {
-  flex: 0 0 max-content;
+/* --- Tab button --- */
+.tabs-testimonials .tabs-testimonials-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0;
-  border: 1px solid #dadada;
-  border-radius: 0;
-  padding: 0.5em;
-  background-color: var(--light-color);
-  color: initial;
-  font-weight: bold;
-  line-height: unset;
-  text-align: initial;
-  text-overflow: unset;
-  overflow: unset;
-  white-space: unset;
-  transition: background-color 0.2s;
+  padding: 16px;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  background-color: #efefef;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  text-align: start;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
-.tabs-testimonials .tabs-testimonials-list button p {
-  margin: 0;
+.tabs-testimonials .tabs-testimonials-tab:hover {
+  border-color: var(--text-color);
 }
 
-
-.tabs-testimonials .tabs-testimonials-list button[aria-selected='true'] {
-  border-bottom: 1px solid var(--background-color);
-  background-color: var(--background-color);
-  cursor: initial;
+.tabs-testimonials .tabs-testimonials-tab[aria-selected='true'] {
+  border-color: var(--text-color);
+  background-color: var(--section-light-color);
+  cursor: default;
 }
 
+.tabs-testimonials .tabs-testimonials-avatar {
+  flex: 0 0 auto;
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.tabs-testimonials .tabs-testimonials-avatar picture,
+.tabs-testimonials .tabs-testimonials-avatar img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.tabs-testimonials .tabs-testimonials-tab-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tabs-testimonials .tabs-testimonials-tab-name {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.tabs-testimonials .tabs-testimonials-tab-role {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* --- Active panel --- */
 .tabs-testimonials .tabs-testimonials-panel {
-  margin-top: -1px;
-  padding: 24px;
-  border: 1px solid #dadada;
-  overflow: auto;
+  order: 1;
 }
 
 .tabs-testimonials .tabs-testimonials-panel[aria-hidden='true'] {
   display: none;
+}
+
+.tabs-testimonials .tabs-testimonials-panel-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+@media (width >= 900px) {
+  .tabs-testimonials .tabs-testimonials-panel-body {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+.tabs-testimonials .tabs-testimonials-media {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.tabs-testimonials .tabs-testimonials-media picture,
+.tabs-testimonials .tabs-testimonials-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 568 / 426;
+  object-fit: cover;
+}
+
+.tabs-testimonials .tabs-testimonials-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-testimonials .tabs-testimonials-name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.tabs-testimonials .tabs-testimonials-name strong {
+  font-weight: 700;
+}
+
+.tabs-testimonials .tabs-testimonials-role {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.tabs-testimonials .tabs-testimonials-quote {
+  margin: 32px 0 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-color);
 }

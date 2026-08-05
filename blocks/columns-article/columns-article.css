@@ -1,12 +1,14 @@
+/* columns-article -- featured article intro (2-col: image + article meta) */
+
+/* Values extracted from source computed styles (wknd-trendsetters.site/about-us) */
+
 .columns-article > div {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
-.columns-article img {
-  width: 100%;
-}
-
+/* image column comes first on mobile */
 .columns-article > div > div {
   order: 1;
 }
@@ -15,14 +17,37 @@
   order: 0;
 }
 
-.columns-article > div > .columns-article-img-col img {
+.columns-article img {
   display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* article heading -- font/uppercase inherited from global h2 */
+.columns-article h2 {
+  margin: 0;
+}
+
+/* meta lines: "By Taylor Brooks" and the date/read-time line */
+.columns-article > div > div p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--link-color);
+}
+
+/* author line sits just below the heading; name is emphasized in body color */
+.columns-article > div > div p:first-of-type {
+  margin-top: 16px;
+  color: var(--text-color);
 }
 
 @media (width >= 900px) {
   .columns-article > div {
+    flex-direction: row;
     align-items: center;
-    flex-direction: unset;
     gap: 24px;
   }
 

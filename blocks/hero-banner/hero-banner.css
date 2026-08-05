@@ -1,47 +1,142 @@
-.hero-banner-container .hero-banner-wrapper {
-  max-width: unset;
-  padding: 0;
+/* hero-banner: full-width CTA banner -- background image + dark scrim + overlaid white text.
+   Values extracted from source computed styles (about-us inverse-section CTA card). */
+
+/* Full-bleed: escape the section's max-width wrapper */
+.hero-banner-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
 }
 
+/* Card (block element) */
 .hero-banner {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  display: flex;
+  align-items: flex-end;
+  min-height: 360px;
+  border-radius: 20px;
+  overflow: hidden;
+  color: #fff;
 }
 
-.hero-banner h1,
-.hero-banner h2,
-.hero-banner h3,
-.hero-banner h4,
-.hero-banner h5,
-.hero-banner h6,
-.hero-banner p {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
-.hero-banner.no-image * {
-  color: var(--text-color);
-}
-
-.hero-banner picture {
+/* Dark scrim -- stronger at bottom so white text reads (matches source gradient) */
+.hero-banner::after {
+  content: '';
   position: absolute;
-  z-index: -1;
   inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+  z-index: 1;
+  background-image: linear-gradient(to top, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 0%) 60%);
+  pointer-events: none;
 }
 
-.hero-banner img {
-  object-fit: cover;
+/* Row 1: background image -- full-bleed behind everything */
+.hero-banner > div:first-child {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+}
+
+.hero-banner > div:first-child > div {
   width: 100%;
   height: 100%;
 }
 
+.hero-banner picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Row 2: overlaid text content */
+/* stylelint-disable-next-line no-descending-specificity */
+.hero-banner > div:last-child {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: 0;
+}
+
+.hero-banner > div:last-child > div {
+  max-width: 672px;
+  padding: 40px 32px;
+}
+
+/* Heading */
+.hero-banner h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Subheading paragraph */
+.hero-banner p {
+  margin: 16px 0 0;
+  color: #fff;
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+}
+
+/* CTA paragraph spacing */
+.hero-banner p:has(a) {
+  margin-top: 32px;
+}
+
+/* "See more" button -- inverse style (white bg, black text).
+   High specificity so it wins whether or not EDS adds the .button class. */
+main .hero-banner p a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 12px 24px;
+  border: 2px solid #fff;
+  border-radius: 9999px;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+main .hero-banner p a:any-link:hover {
+  background-color: #eee;
+  border-color: #eee;
+  color: #000;
+  text-decoration: none;
+}
+
+/* If block has no image, render text on solid dark background */
+.hero-banner.no-image::after {
+  background-image: none;
+}
+
 @media (width >= 900px) {
   .hero-banner {
-    padding: 40px 32px;
+    min-height: 448px;
+  }
+
+  .hero-banner > div:last-child > div {
+    padding: 64px;
+  }
+
+  .hero-banner h2 {
+    font-size: 56px;
+    letter-spacing: -1.12px;
+  }
+
+  .hero-banner p {
+    line-height: 1.6;
   }
 }

@@ -1,33 +1,97 @@
+/* columns-hero -- hero intro: text column + stacked image grid.
+   Values extracted from source computed styles (wknd-trendsetters about-us). */
+
+/* Row: mobile-first single column (text above images) */
 .columns-hero > div {
   display: flex;
   flex-direction: column;
+  gap: 40px;
+}
+
+/* --- Text column --- */
+.columns-hero > div > div:first-child h1 {
+  margin: 0;
+}
+
+.columns-hero > div > div:first-child > p:first-of-type {
+  margin: 24px 0 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Button row: the two CTA links share one paragraph */
+.columns-hero > div > div:first-child > p:last-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 32px 0 0;
+}
+
+/* CTA links rendered as pill buttons (EDS leaves them as plain <a>) */
+.columns-hero > div > div:first-child > p:last-of-type a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border: 2px solid var(--text-color);
+  border-radius: 9999px;
+  padding: 12px 24px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Second CTA = outline / secondary */
+.columns-hero > div > div:first-child > p:last-of-type a:any-link:last-child {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.columns-hero > div > div:first-child > p:last-of-type a:any-link:hover {
+  background-color: #333;
+  border-color: #333;
+  color: var(--background-color);
+}
+
+.columns-hero > div > div:first-child > p:last-of-type a:any-link:last-child:hover {
+  background-color: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--background-color);
+}
+
+/* --- Image column: 2-up grid of 3 images (bare <img> wrapped in <p> by EDS) --- */
+.columns-hero > div > div:last-child {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.columns-hero > div > div:last-child > p {
+  margin: 0;
 }
 
 .columns-hero img {
-  width: 100%;
-}
-
-.columns-hero > div > div {
-  order: 1;
-}
-
-.columns-hero > div > .columns-hero-img-col {
-  order: 0;
-}
-
-.columns-hero > div > .columns-hero-img-col img {
   display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: 20px;
+  object-fit: cover;
 }
 
+/* --- Desktop: two equal columns side by side --- */
 @media (width >= 900px) {
   .columns-hero > div {
+    flex-direction: row;
     align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    gap: 64px;
   }
 
   .columns-hero > div > div {
     flex: 1;
-    order: unset;
   }
 }
