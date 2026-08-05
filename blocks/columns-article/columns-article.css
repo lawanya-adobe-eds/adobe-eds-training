@@ -38,8 +38,40 @@
   color: var(--link-color);
 }
 
-/* author line sits just below the heading; name is emphasized in body color */
+/* breadcrumb row (first paragraph: Home / Case studies) */
 .columns-article > div > div p:first-of-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.columns-article > div > div p:first-of-type a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.columns-article > div > div p:first-of-type a:last-of-type {
+  color: var(--text-color);
+}
+
+/* chevron separator between the two breadcrumb links (matches source SVG) */
+.columns-article > div > div p:first-of-type a + a::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  border: solid currentcolor;
+  border-width: 2px 2px 0 0;
+  transform: rotate(45deg);
+  color: var(--link-color);
+  vertical-align: middle;
+}
+
+/* author line sits just below the heading; emphasized in body color */
+/* stylelint-disable-next-line no-descending-specificity */
+.columns-article > div > div h2 + p {
   margin-top: 16px;
   color: var(--text-color);
 }
