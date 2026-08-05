@@ -35,3 +35,42 @@
     padding: 40px 32px;
   }
 }
+
+/* video-background variant: full-cover autoplay video (or poster) behind text */
+.hero.video-background {
+  display: flex;
+  align-items: flex-end;
+  min-height: 480px;
+  overflow: hidden;
+  color: var(--background-color);
+}
+
+.hero.video-background .hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero.video-background .hero-video video,
+.hero.video-background .hero-video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* dark scrim for text legibility over the video */
+.hero.video-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(to top, rgb(0 0 0 / 60%) 0%, rgb(0 0 0 / 10%) 60%);
+  pointer-events: none;
+}
+
+.hero.video-background h1,
+.hero.video-background h2,
+.hero.video-background p {
+  position: relative;
+  color: var(--background-color);
+}
