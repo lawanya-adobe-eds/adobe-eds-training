@@ -1,0 +1,76 @@
+/* Article List block -- query-index-driven card grid with "Load more". Tokens only. */
+
+.article-list .article-list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.article-list .article-list-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--background-color);
+}
+
+.article-list .article-list-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-list .article-list-card-image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.article-list .article-list-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-list .article-list-card-body {
+  padding: 20px;
+}
+
+.article-list .article-list-card-body h3 {
+  margin: 0;
+  font-size: var(--heading-size-xs);
+}
+
+.article-list .article-list-card-body p {
+  margin: 8px 0 0;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  color: var(--link-color);
+}
+
+.article-list .article-list-empty {
+  color: var(--link-color);
+}
+
+/* Load more button */
+.article-list .article-list-more {
+  display: block;
+  margin: 40px auto 0;
+}
+
+/* tablet: 2 columns */
+@media (width >= 600px) {
+  .article-list .article-list-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* desktop: 3 columns */
+@media (width >= 900px) {
+  .article-list .article-list-items {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
