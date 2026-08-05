@@ -7,7 +7,9 @@
       "name": "about-us",
       "urls": [
         "https://wknd-trendsetters.site/about-us",
-        "https://wknd-trendsetters.site/magazine/article-1"
+        "https://wknd-trendsetters.site/magazine/article-1",
+        "https://wknd-trendsetters.site/magazine/article-2",
+        "https://wknd-trendsetters.site/magazine/article-3"
       ],
       "representativeUrl": "https://wknd-trendsetters.site/about-us",
       "coverageGaps": [],
