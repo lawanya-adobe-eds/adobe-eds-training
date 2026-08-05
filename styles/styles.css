@@ -249,11 +249,18 @@ main img {
 
 /* sections */
 main > .section {
-  margin: 40px 0;
+  margin: 0;
+  padding: 48px 0;
+}
+
+@media (width >= 900px) {
+  main > .section {
+    padding: 128px 0;
+  }
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: 1152px;
   margin: auto;
   padding: 0 24px;
 }
@@ -264,7 +271,7 @@ main > .section:first-of-type {
 
 @media (width >= 900px) {
   main > .section > div {
-    padding: 0 32px;
+    padding: 0;
   }
 }
 
@@ -274,7 +281,7 @@ main .section.highlight,
 main .section.secondary {
   background-color: var(--section-light-color);
   margin: 0;
-  padding: 64px 0;
+  padding: 80px 0;
 }
 
 main .section.dark,
@@ -282,7 +289,7 @@ main .section.inverse {
   background-color: var(--section-dark-color);
   color: #fff;
   margin: 0;
-  padding: 64px 0;
+  padding: 80px 0;
 }
 
 main .section.dark h1,
@@ -300,6 +307,6 @@ main .section.inverse h3 {
   main .section.secondary,
   main .section.dark,
   main .section.inverse {
-    padding: 96px 0;
+    padding: 128px 0;
   }
 }

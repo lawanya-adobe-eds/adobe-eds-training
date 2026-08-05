@@ -1,11 +1,6 @@
-/* hero-banner: full-width CTA banner -- background image + dark scrim + overlaid white text.
+/* hero-banner: CTA banner -- background image + dark scrim + overlaid white text.
+   Sits within the section content column as a rounded card (matches source).
    Values extracted from source computed styles (about-us inverse-section CTA card). */
-
-/* Full-bleed: escape the section's max-width wrapper */
-.hero-banner-wrapper {
-  max-width: 100% !important;
-  padding: 0 !important;
-}
 
 /* Card (block element) */
 .hero-banner {
