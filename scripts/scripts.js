@@ -166,7 +166,15 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
-    await loadSection(main.querySelector('.section'), waitForFirstImage);
+    // Prioritize the LCP image: mark the first image of the first section as
+    // high fetch priority so the browser requests it ahead of other resources.
+    const firstSection = main.querySelector('.section');
+    const lcpImg = firstSection && firstSection.querySelector('img');
+    if (lcpImg) {
+      lcpImg.setAttribute('fetchpriority', 'high');
+      lcpImg.setAttribute('loading', 'eager');
+    }
+    await loadSection(firstSection, waitForFirstImage);
   }
 
   try {

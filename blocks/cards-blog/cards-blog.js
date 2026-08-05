@@ -12,7 +12,21 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
-  ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
+  ul.querySelectorAll('picture > img').forEach((img) => {
+    const optimized = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+    const newImg = optimized.querySelector('img');
+    const w = img.getAttribute('width');
+    const h = img.getAttribute('height');
+    if (w && h) {
+      newImg.setAttribute('width', w);
+      newImg.setAttribute('height', h);
+    } else {
+      // blog card images are 16:10 per the block's CSS aspect-ratio
+      newImg.setAttribute('width', '750');
+      newImg.setAttribute('height', '469');
+    }
+    img.closest('picture').replaceWith(optimized);
+  });
 
   ul.querySelectorAll('li').forEach((li) => {
     const body = li.querySelector('.cards-blog-card-body');
