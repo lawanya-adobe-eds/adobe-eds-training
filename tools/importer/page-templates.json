@@ -139,6 +139,102 @@
           "defaultContent": []
         }
       ]
+    },
+    {
+      "name": "wknd",
+      "urls": [
+        "https://wknd.site/us/en.html"
+      ],
+      "representativeUrl": "https://wknd.site/us/en.html",
+      "coverageGaps": [],
+      "description": "WKND Adventures & Travel home page: rotating hero carousel (3 slides), grey featured-article promo (image beside text), Recent Articles heading + 4-card grid + All Articles button, Next Adventures heading + full-bleed hero teaser, and Where do you want to go? heading + 4-card grid + All Trips button.",
+      "blocks": [
+        {
+          "name": "carousel-hero",
+          "instances": [
+            ".cmp-carousel--hero"
+          ]
+        },
+        {
+          "name": "columns-article",
+          "instances": [
+            ".cmp-teaser--featured"
+          ]
+        },
+        {
+          "name": "cards-feature",
+          "instances": [
+            "#container-9c4899b718 .cmp-image-list",
+            "#container-4d3fed64ff .cmp-image-list"
+          ]
+        },
+        {
+          "name": "hero-banner",
+          "instances": [
+            "#teaser-ef0ce278d1"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "s1",
+          "name": "hero-carousel",
+          "selector": ".cmp-carousel--hero",
+          "style": null,
+          "blocks": [
+            "carousel-hero"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s2",
+          "name": "featured-article",
+          "selector": ".cmp-teaser--featured",
+          "style": "grey",
+          "blocks": [
+            "columns-article"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s3",
+          "name": "recent-articles",
+          "selector": "#container-9c4899b718",
+          "style": null,
+          "blocks": [
+            "cards-feature"
+          ],
+          "defaultContent": [
+            "#title-c2d2b28d00",
+            "#button-2e6d32893a"
+          ]
+        },
+        {
+          "id": "s4",
+          "name": "next-adventures",
+          "selector": "#teaser-ef0ce278d1",
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ],
+          "defaultContent": [
+            "#title-971080d74b"
+          ]
+        },
+        {
+          "id": "s5",
+          "name": "where-to-go",
+          "selector": "#container-4d3fed64ff",
+          "style": null,
+          "blocks": [
+            "cards-feature"
+          ],
+          "defaultContent": [
+            "#title-ca6ac0fe65",
+            "#button-b6562c963d"
+          ]
+        }
+      ]
     }
   ]
 }
