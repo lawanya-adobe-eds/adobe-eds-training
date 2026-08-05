@@ -67,6 +67,16 @@ footer .footer .footer-social img {
   height: 18px;
 }
 
+/* icons are currentColor SVGs loaded as <img>; force white on the dark footer */
+footer .footer .icon img {
+  filter: brightness(0) invert(1);
+}
+
+footer .footer .footer-brand-logo .icon img {
+  width: 28px;
+  height: 28px;
+}
+
 /* link columns */
 footer .footer .footer-links .default-content-wrapper > ul {
   list-style: none;
