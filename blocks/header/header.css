@@ -41,8 +41,8 @@ header nav[aria-expanded='true'] {
     display: flex;
     justify-content: space-between;
     gap: 0 32px;
-    max-width: 1200px;
-    padding: 0 32px;
+    max-width: var(--content-max-width);
+    padding: 0;
     height: 83px;
   }
 

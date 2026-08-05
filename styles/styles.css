@@ -260,7 +260,7 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1152px;
+  max-width: var(--content-max-width);
   margin: auto;
   padding: 0 24px;
 }

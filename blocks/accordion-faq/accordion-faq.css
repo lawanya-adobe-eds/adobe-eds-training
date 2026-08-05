@@ -15,11 +15,21 @@
 
 /* desktop: heading/intro on the left, accordion on the right (matches source 2-col) */
 @media (width >= 900px) {
-  .accordion-faq-container {
+  main .section.accordion-faq-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 64px;
     align-items: start;
+    max-width: var(--content-max-width, 1152px);
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  .accordion-faq-container .default-content-wrapper,
+  .accordion-faq-container .accordion-faq-wrapper {
+    max-width: none;
+    margin: 0;
+    padding: 0;
   }
 
   .accordion-faq-container .default-content-wrapper {
