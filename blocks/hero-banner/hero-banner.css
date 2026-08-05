@@ -1,8 +1,14 @@
 /* hero-banner: CTA banner -- background image + dark scrim + overlaid white text.
-   Sits within the section content column as a rounded card (matches source).
-   Values extracted from source computed styles (about-us inverse-section CTA card). */
+   Source structure: a full-width BLACK section band, with a contained rounded
+   image card (1152px) centered inside it. Values from source computed styles. */
 
-/* Card (block element) */
+/* full-width dark section band (matches source inverse-section) */
+main .section.hero-banner-container {
+  background-color: var(--section-dark-color);
+  color: #fff;
+}
+
+/* Card (block element) -- contained rounded image card within the band */
 .hero-banner {
   position: relative;
   display: flex;
