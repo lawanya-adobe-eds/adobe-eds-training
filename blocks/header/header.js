@@ -60,7 +60,7 @@ function focusNavSection() {
  */
 function toggleAllNavSections(sections, expanded = false) {
   if (!sections) return;
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
+  sections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((section) => {
     section.setAttribute('aria-expanded', expanded);
   });
 }
@@ -139,10 +139,31 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    // top-level nav items are the direct <li> children of the section's list
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+      const submenu = navSection.querySelector(':scope > ul');
+      if (submenu) {
+        navSection.classList.add('nav-drop');
+        // a dropdown whose immediate children have no further nested lists is a
+        // simple single-column dropdown (e.g. Support); otherwise it is a megamenu
+        const hasGroups = submenu.querySelector(':scope > li > ul');
+        if (!hasGroups) navSection.classList.add('nav-drop-simple');
+      }
+      // open on hover (desktop), matching the source behavior
+      navSection.addEventListener('mouseenter', () => {
+        if (isDesktop.matches && navSection.classList.contains('nav-drop')) {
+          toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', 'true');
+        }
+      });
+      navSection.addEventListener('mouseleave', () => {
+        if (isDesktop.matches && navSection.classList.contains('nav-drop')) {
+          navSection.setAttribute('aria-expanded', 'false');
+        }
+      });
+      // click still toggles (keyboard/mobile)
       navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
+        if (isDesktop.matches && navSection.classList.contains('nav-drop')) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');

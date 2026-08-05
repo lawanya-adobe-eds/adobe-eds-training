@@ -1,9 +1,10 @@
-/* header and nav layout */
+/* header and nav layout — WKND Trendsetters style */
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
   z-index: 2;
   position: fixed;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 header nav {
@@ -15,7 +16,7 @@ header nav {
   align-items: center;
   gap: 0 24px;
   margin: auto;
-  max-width: 1248px;
+  max-width: 1200px;
   height: var(--nav-height);
   padding: 0 24px;
   font-family: var(--body-font-family);
@@ -32,15 +33,17 @@ header nav[aria-expanded='true'] {
 
 @media (width >= 900px) {
   header .nav-wrapper {
-    position: relative;
+    position: sticky;
+    top: 0;
   }
 
   header nav {
     display: flex;
     justify-content: space-between;
     gap: 0 32px;
-    max-width: 1264px;
+    max-width: 1200px;
     padding: 0 32px;
+    height: 83px;
   }
 
   header nav[aria-expanded='true'] {
@@ -56,6 +59,7 @@ header nav p {
 
 header nav a:any-link {
   color: currentcolor;
+  text-decoration: none;
 }
 
 /* hamburger */
@@ -142,15 +146,24 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
+  font-family: var(--heading-font-family);
   font-weight: 700;
-  line-height: 1;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
+header .nav-brand a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header nav .nav-brand .icon,
 header nav .nav-brand img {
-  width: 128px;
-  height: auto;
+  width: 28px;
+  height: 28px;
 }
 
 /* sections */
@@ -170,7 +183,7 @@ header nav[aria-expanded='true'] .nav-sections {
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
+  font-size: 14px;
 }
 
 header nav .nav-sections ul > li {
@@ -196,6 +209,21 @@ header nav .nav-sections ul > li > ul > li {
     align-self: unset;
   }
 
+  header nav .nav-sections .default-content-wrapper > ul {
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li {
+    flex: 0 1 auto;
+    position: relative;
+    font-weight: 500;
+  }
+
+  /* dropdown carets */
   header nav .nav-sections .nav-drop {
     position: relative;
     padding-right: 16px;
@@ -206,67 +234,115 @@ header nav .nav-sections ul > li > ul > li {
     content: '';
     display: inline-block;
     position: absolute;
-    top: 0.5em;
-    right: 2px;
+    top: 0.35em;
+    right: 0;
     transform: rotate(135deg);
     width: 6px;
     height: 6px;
     border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
     border-width: 2px 2px 0 0;
   }
 
   header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
+    top: 0.5em;
+    transform: rotate(-45deg);
   }
 
-  header nav .nav-sections ul {
-    display: flex;
-    gap: 24px;
-    margin: 0;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
-  }
-
+  /* second-level dropdown panels */
   header nav .nav-sections .default-content-wrapper > ul > li > ul {
     display: none;
-    position: relative;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
-    display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
+    display: flex;
+    gap: 32px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 84px;
+    max-width: min(1140px, calc(100vw - 48px));
+    padding: 24px 28px;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 8%);
     white-space: initial;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
-    content: '';
+  /* Support small dropdown: single column, anchored to its trigger */
+  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop-simple[aria-expanded='true'] > ul {
     position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+    left: 0;
+    transform: none;
+    top: calc(100% + 20px);
+    max-width: none;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 160px;
+    padding: 16px;
   }
 
+  /* group heading (Casual / Now Trending / Inspo) */
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+    padding: 0;
+    min-width: 180px;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li > p {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #666;
+    margin-bottom: 12px;
+  }
+
+  /* third-level items (the actual links) */
+  /* stylelint-disable-next-line no-descending-specificity */
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li > ul {
+    display: block;
+    position: static;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: none;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li > ul > li {
+    padding: 6px 0;
+    font-weight: 500;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li > ul > li a {
+    color: #000;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li > ul > li a:hover {
+    color: #666;
   }
 }
 
-/* tools */
+/* tools — Subscribe CTA */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+header nav .nav-tools a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--text-color);
+  border-radius: 9999px;
+  padding: 10px 22px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+header nav .nav-tools a:hover {
+  background-color: #333;
+  border-color: #333;
+  color: #fff;
 }
