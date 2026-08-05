@@ -87,6 +87,8 @@ var CustomImportScript = (() => {
     }
     const rightCell = [];
     if (contentCol) {
+      const breadcrumb = contentCol.querySelector(":scope > .breadcrumbs");
+      if (breadcrumb) rightCell.push(breadcrumb);
       const heading = contentCol.querySelector('h1, h2, [class*="heading"]');
       if (heading) rightCell.push(heading);
       const metaBlocks = contentCol.querySelectorAll(":scope > div:not(.breadcrumbs)");
@@ -235,9 +237,6 @@ var CustomImportScript = (() => {
   // tools/importer/transformers/wknd-trendsetters-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform(hookName, element, payload) {
-    if (hookName === TransformHook.beforeTransform) {
-      WebImporter.DOMUtils.remove(element, [".breadcrumbs"]);
-    }
     if (hookName === TransformHook.afterTransform) {
       WebImporter.DOMUtils.remove(element, [
         ".skip-link",

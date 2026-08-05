@@ -1,0 +1,10 @@
+{
+  "type": "da",
+  "sites": {
+    "adobe-eds-training": {
+      "previewOrg": "lawanya-adobe-eds",
+      "previewSite": "adobe-eds-training",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}
