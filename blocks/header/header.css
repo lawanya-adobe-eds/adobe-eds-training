@@ -178,16 +178,18 @@ header nav[aria-expanded='true'] .nav-sections {
   display: block;
   visibility: visible;
   align-self: start;
+  margin: 0 -24px;
+  width: calc(100% + 48px);
 }
 
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 header nav .nav-sections ul > li {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 header nav .nav-sections ul > li > ul {
@@ -195,7 +197,27 @@ header nav .nav-sections ul > li > ul {
 }
 
 header nav .nav-sections ul > li > ul > li {
-  font-weight: 400;
+  font-weight: 600;
+}
+
+header nav[aria-expanded='true'] .nav-sections a {
+  font-weight: 600;
+}
+
+/* mobile: full-width flush menu items with larger tap targets */
+header nav[aria-expanded='true'] .nav-sections .default-content-wrapper,
+header nav[aria-expanded='true'] .nav-sections .default-content-wrapper > ul {
+  width: 100%;
+  margin: 0;
+}
+
+header nav[aria-expanded='true'] .nav-sections .default-content-wrapper > ul > li {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 24px;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 @media (width >= 900px) {
